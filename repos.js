@@ -1,6 +1,6 @@
-const request = require("request");
-const cheerio = require("cheerio");
-const issueObj = require("./issues");
+import cheerio from "cheerio";
+import getAllIssuesKey from "./issues.js";
+import request from "request";
 
 function getAllRepos(url, topicName) {
   request(url, function (err, response, html) {
@@ -14,10 +14,6 @@ function getAllRepos(url, topicName) {
   });
 }
 
-module.exports = {
-  getAllReposKey: getAllRepos,
-};
-
 function extractAllRepos(html, topicName) {
   let $ = cheerio.load(html);
   let repo = $("h3.f3 a.text-bold");
@@ -29,6 +25,8 @@ function extractAllRepos(html, topicName) {
 
     console.log(`${i + 1}. reponame is ${repoName} | repolink is ${repoLink}`);
     //console.log(topicName + " ..." + repoName );
-    issueObj.getAllIssuesKey(repoLink, repoName, topicName);
+    getAllIssuesKey(repoLink, repoName, topicName);
   }
 }
+
+export default getAllRepos;

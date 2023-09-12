@@ -1,6 +1,6 @@
-const request = require("request");
-const cheerio = require("cheerio");
-const repoObj = require("./repos");
+import cheerio from "cheerio";
+import getAllReposKey from "./repos.js";
+import request from "request";
 
 let url = "https://github.com/topics";
 request(url, (err, response, html) => {
@@ -23,6 +23,6 @@ function extractAllTopics(html) {
     topicLink = "https://github.com" + topicLink;
     console.log(`topic name is ${topicName} | topic link is ${topicLink}`);
 
-    repoObj.getAllReposKey(topicLink, topicName);
+    getAllReposKey(topicLink, topicName);
   }
 }

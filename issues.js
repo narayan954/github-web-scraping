@@ -1,6 +1,6 @@
-const request = require("request");
-const cheerio = require("cheerio");
-let createFiles = require("./files");
+import cheerio from "cheerio";
+import createFiles from "./files.js";
+import request from "request";
 
 function getAllIssues(url, repoName, topicName) {
   request(url, function (err, response, html) {
@@ -13,9 +13,6 @@ function getAllIssues(url, repoName, topicName) {
     }
   });
 }
-module.exports = {
-  getAllIssuesKey: getAllIssues,
-};
 
 function extractIssuesLink(html, url, repoName, topicName) {
   let $ = cheerio.load(html);
@@ -48,3 +45,5 @@ function extractIssues(html, repoName, topicName) {
 
   createFiles(topicName, repoName, issuesList);
 }
+
+export default getAllIssues;

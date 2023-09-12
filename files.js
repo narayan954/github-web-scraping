@@ -1,13 +1,17 @@
-const fs = require("fs");
-const path = require("path");
-const pdfkit = require("pdfkit");
+import { fileURLToPath } from "url";
+import fs from "fs";
+import path from "path";
+import pdfkit from "pdfkit";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function createFiles(topicName, repoName, issuesList) {
   console.log(".........................");
   console.log(issuesList);
   console.log(topicName + " ..." + repoName);
 
-  dirPath = path.join(__dirname, "results", topicName);
+  const dirPath = path.join(__dirname, "results", topicName);
   if (fs.existsSync(dirPath) == false) {
     fs.mkdirSync(dirPath);
   }
@@ -15,7 +19,7 @@ function createFiles(topicName, repoName, issuesList) {
   //fs.writeFileSync(filePath, JSON.stringify(issuesList));
 
   //for creating PDFs
-  filePath = path.join(dirPath, repoName + ".pdf");
+  const filePath = path.join(dirPath, repoName + ".pdf");
   let jsonTextArr = JSON.stringify(issuesList);
   let pdfDoc = new pdfkit();
   pdfDoc.pipe(fs.createWriteStream(filePath));
@@ -23,4 +27,5 @@ function createFiles(topicName, repoName, issuesList) {
   pdfDoc.moveDown(0.5);
   pdfDoc.end();
 }
-module.exports = createFiles;
+
+export default createFiles;

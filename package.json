@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is a web scraping project which scraps the github website to get all issues from top 8 repositories present inside each of the given 3 topics in this page (these 3 topics are randomly listed each time we refresh this page)",
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "start": "node main.js"
   },

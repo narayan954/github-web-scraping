@@ -12,13 +12,11 @@ The following  activities are carried out when we run this project-
 ### How to run this project
 1. Clone this repository in your local environment.
 2. Run command `npm install` to install all the required packages.
-3. Run command `node main.js` to get all the required directories and files.
-
-
+3. Run command `npm start` to run the project.
+4. After running the project, you will see 3 directories created inside the results directory, one for each topic.
 
 
 ### Insights-
 
 1. Cheerio module used here for web scraping.
 2. Limitation: cheerio module only parses and extracts initial loaded html. Since all repositories are not loaded at once, we are extracting issues only from top 8 repositories.
-
